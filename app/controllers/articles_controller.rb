@@ -7,6 +7,8 @@ include ArticlesHelper
 
   def show
     @article = Article.find(params[:id])
+    @comment = Comment.new
+    @comment.article_id = @article.id
   end
 
   def new
@@ -42,6 +44,10 @@ include ArticlesHelper
   	flash.notice = "Article '#{@article.title}' was updated."
 
   	redirect_to article_path(@article)
+  end
+
+  def comment_params
+  	params.require(:comment).permit(:author_name, :body)
   end
 
 end
