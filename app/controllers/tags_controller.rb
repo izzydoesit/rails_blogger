@@ -8,4 +8,13 @@ class TagsController < ApplicationController
 		@tag = Tag.find(params[:id])
 	end
 
+	def destroy
+		@tag = Tag.find(params[:id])
+		@tag.destroy
+
+		flash_notice = "Tag '#{@tag}' deleted!"
+
+		redirect_to tags_path
+	end
+
 end
