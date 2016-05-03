@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
-include ArticlesHelper
+  include ArticlesHelper
+
 	before_filter :require_login, except: [:index, :show]
 
   def index
@@ -17,8 +18,9 @@ include ArticlesHelper
   end
 
   def create
-  	@article = Article.new(article_params)
-  	@article.save
+    @article = Article.new(article_params)
+    puts @article.inspect
+    @article.save
 
   	flash.notice = "Article '#{@article.title}' created."
 
